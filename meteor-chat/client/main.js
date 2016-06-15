@@ -21,4 +21,4 @@
 //   },
 // });
 
-import '../imports/ui/home.html'
+import '../imports/ui/home.js'
