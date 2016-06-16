@@ -7,9 +7,22 @@ Template.home.onCreated(function () {
 });
 
 Template.home.helpers({
+    'message':function () {
+        return Message.find({},{sort:{created_on: -1}, limit:10}).fetch().reverse();
+    },
+    'userLoggedIn': function()  {
+        return Meteor.user();
+    }
 
 });
 
 Template.home.events({
-
+    'submit #new-msg': function (event) {
+        event.preventDefault();
+        var message = $("[name='message']").val();
+        Meteor.call('insertMessage', message);
+        setTimeout(function (){
+            $("[name='message']").val('');
+        },100);
+    }
 });
